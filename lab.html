@@ -1658,15 +1658,25 @@ requestAnimationFrame(loop);
 import { createVimo } from './vimo3d.js';
 const TIPS = {"bekijken": ["Sleep de kubus rond en bekijk alle zes de vlakken.", "Tik op een kleur, dan draait dat vlak naar voren.", "Elk vlak heeft een eigen kleur en aantal stippen."], "quiz": ["Draai de kubus naar het goede antwoord!", "Veeg over de kubus of gebruik de pijltjes.", "Weet je het niet? Tel de stippen!"], "snelheid": ["Hoe snel vind jij het goede vlak?", "Wie is de snelste van de klas?"], "nabouwen": ["Bouw de opstelling na met echte Motion Cubes.", "Kijk goed welke kleur waar zit!"], "bouwen": ["Bouw je eigen toren, muur of trap!", "Hoeveel kubussen kun jij stapelen?"], "missie": ["Kies een missie en ga bewegen!", "Samen lukt het beter!"]};
 const box = document.getElementById('vimoHelp'), openB = document.getElementById('vhOpen');
-const tabOf = () => { const t = document.querySelector('[data-mode][aria-selected="true"]'); return t ? t.getAttribute('data-mode') : Object.keys(TIPS)[0]; };
+const ARR_TIPS = {
+  kubus: TIPS.bekijken,
+  cirkel: ["In een kring kan iedereen elkaar aankijken. De juf of meester ook!", "Iedereen zit even hoog. Fijn voor een kringgesprek.", "Zet de leerlingen aan of uit met de knop Leerlingen."],
+  halve: ["In een halve cirkel kijkt iedereen naar het digibord.", "In het midden blijft ruimte over voor een activiteit.", "Sleep rond en kijk vanaf de plek van de leerkracht."],
+  dialoog: ["Een binnencirkel en een buitencirkel: praat met je duo en schuif dan door.", "Elk duo zit hier anders. Zo zie je alles wat de kubus kan.", "Zie je de kubussen die wiebelen? Die liggen met geel boven."],
+  houding: ["Lichtblauw naar boven en je benen over de schuine kant.", "Zo zit je vanzelf goed: rechte rug en voeten plat op de grond.", "Handen op je knieën. Klaar om te luisteren!"],
+  wippen: ["Geel naar boven, dan kun je bewegen op de bolle kant!", "Links beweeg je van voor naar achter.", "Een kwartslag gedraaid? Dan beweeg je van links naar rechts."],
+  duo: ["Twee kubussen samen: tegenover elkaar, naast elkaar of rug aan rug.", "Probeer alle duo's eens uit met de knoppen."]
+};
+const tabOf = () => { const t = document.querySelector('[data-mode][aria-selected="true"]'); const m = t ? t.getAttribute('data-mode') : Object.keys(TIPS)[0];
+  if (m !== 'bekijken') return m; const a = document.querySelector('#arrOpts [data-arr][aria-pressed="true"]'); return 'b:' + (a ? a.dataset.arr : 'kubus'); };
 let tab = tabOf(), ti = 0, v = null;
-const next = () => { const l = TIPS[tab] || TIPS[Object.keys(TIPS)[0]]; const t = l[ti % l.length]; ti++; return t; };
+const next = () => { const l = (tab.startsWith('b:') ? ARR_TIPS[tab.slice(2)] : TIPS[tab]) || TIPS.bekijken; const t = l[ti % l.length]; ti++; return t; };
 function start() { if (v) return; v = createVimo(document.getElementById('vhStage'), { tapAnywhere: true, bubbleAlign: 'side', onTap: () => ({ move: ti % 3 === 2 ? 'springen' : 'praten', text: next() }) }); setTimeout(() => v.say("Hoi! Ik help je. Tik op mij voor een tip."), 900); }
 let hidden = false; try { hidden = localStorage.getItem('vimo-help') === 'uit'; } catch (e) {}
 const show = h => { hidden = h; box.hidden = h; openB.hidden = !h; try { localStorage.setItem('vimo-help', h ? 'uit' : 'aan'); } catch (e) {} if (!h) start(); };
 document.getElementById('vhX').addEventListener('click', () => show(true));
 openB.addEventListener('click', () => { show(false); if (v) { ti = 0; v.say(next()); } });
 show(hidden);
-new MutationObserver(() => { const t = tabOf(); if (t !== tab) { tab = t; ti = 0; if (v && !hidden) setTimeout(() => v.say(next()), 350); } }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['aria-selected'] });
+new MutationObserver(() => { const t = tabOf(); if (t !== tab) { tab = t; ti = 0; if (v && !hidden) setTimeout(() => v.say(next()), 350); } }).observe(document.body, { subtree: true, attributes: true, attributeFilter: ['aria-selected', 'aria-pressed'] });
 </script>
 </body></html>
