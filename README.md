@@ -1,6 +1,6 @@
 # Vanerum Motion Studio
 
-Statische website rond de Motion Cube: een startpagina met het 3D-model, Motion Lab (`lab.html`) en Motion Missions (`missies.html`).
+Statische website rond de Motion Cube: een startpagina met het 3D-model, Motion Lab (`lab.html`), Motion Missions (`missies.html`) en Vimo (`vimo.html`), de mascotte van Vanerum.
 
 Geen build-stap nodig. Alle bestanden staan in de hoofdmap.
 
@@ -17,4 +17,10 @@ Een eigen domein (bijv. `motion.vanerum.nl`) koppel je in het Pages-project onde
 
 - `index.html`: start, met navigatie via `#lab` en `#missies`
 - `lab.html`: Motion Cube Lab (bekijken, quiz, snelheid, nabouwen, vrij bouwen, missie)
-- `missies.html`: 100 Motion Missions-opdrachtkaarten, lesgenerator, digibord en PDF (2× A5 per A4)
+- `missies.html`: 100 Motion Missions-opdrachtkaarten, lesgenerator, houdingen met Vimo, digibord en PDF (2× A5 per A4)
+- `vimo.html`: Vimo in 3D naast de Motion Cube, met bewegingen en een opdrachtveld (in Claude met AI, op de website met woordherkenning)
+- `vimo2d.js`: Vimo in 2D, gedeeld door de startpagina, de houdingen en het beursscherm
+
+## Beursscherm
+
+Zet op de startpagina onderaan **Beursscherm** aan (of open de site met `#beurs`). Raakt een minuut lang niemand het scherm aan, dan komt Vimo groot in beeld en nodigt hij bezoekers uit. Eén tik brengt je terug naar de startpagina.
