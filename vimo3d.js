@@ -234,7 +234,8 @@ export function createVimo(el, o = {}) {
     for (const g of [V.gloveL, V.gloveR, V.shoeL, V.shoeR]) { g.getWorldPosition(_v); add(_v); }
     const cx = (x0 + x1) / 2; let bx, by, cls;
     const roomUp = o.bubbleOverflow ? -bh * .9 : m;
-    if (o.bubbleAlign) { cls = "up"; by = Math.min(y0 - gap - bh, H * .15 - bh); bx = o.bubbleAlign === "right" ? W - bw : 0; }
+    if (o.bubbleAlign === "side") { cls = "left"; bx = x0 - gap - bw; by = Math.max(0, Math.min(H - bh, y0 + (y1 - y0) * .12)); }
+    else if (o.bubbleAlign) { cls = "up"; by = Math.min(y0 - gap - bh, H * .15 - bh); bx = o.bubbleAlign === "right" ? W - bw : 0; }
     else if (y0 - gap - bh >= roomUp) { cls = "up"; by = y0 - gap - bh; bx = Math.min(W - bw - m, Math.max(m, cx - bw / 2)); }
     else if (x0 - gap - bw >= m) { cls = "left"; bx = x0 - gap - bw; by = Math.max(m, y0 + H * .04); }
     else if (x1 + gap + bw <= W - m) { cls = "right"; bx = x1 + gap; by = Math.max(m, y0 + H * .04); }

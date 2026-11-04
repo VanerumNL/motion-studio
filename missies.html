@@ -245,7 +245,13 @@ footer b { color: var(--ink); }
 .vimo-help .vh-stage { position: absolute; inset: 0; }
 .vimo-help .vimo3d-bubble { font-size: .85rem; max-width: 15em; }
 .vh-x { position: absolute; z-index: 4; top: 1.2rem; width: 1.6rem; height: 1.6rem; border-radius: 50%; border: 0; background: #1e1e1e; color: #fff; font: 700 1rem/1 var(--f-body); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; opacity: .75; }
-.vimo-help.l .vh-x { right: 0; } .vimo-help.r .vh-x { left: 0; }
+.vh-x { top: auto; bottom: .1rem; right: 0; left: auto; }
+aside.panel { display: flex; flex-direction: column; }
+.vimo-help.in { position: sticky; left: auto; right: auto; bottom: -1.3rem; width: auto; height: 9rem; margin: auto -1.4rem -1.3rem; padding-inline: 1.4rem; flex: none; background: var(--surface, #f4f4f1); border-top: 1px solid rgb(30 30 30 / .1); border-radius: 0 0 1.4rem 1.4rem; }
+.vimo-help.in .vh-x { right: 1.2rem; bottom: .5rem; }
+@media (max-aspect-ratio: 1/1), (max-width: 760px) { .vimo-help.in { position: relative; bottom: auto; margin-top: 1rem; } }
+.vimo-help.in .vh-stage { left: auto; right: 3.4rem; top: .4rem; bottom: .3rem; width: 7rem; }
+.vh-open.in { position: static; align-self: flex-end; margin-top: auto; }
 .vh-x:hover, .vh-x:focus-visible { opacity: 1; }
 .vh-open { position: fixed; z-index: 40; bottom: 2.8rem; border: 0; border-radius: 99px; background: #1e1e1e; color: #fff; font: 700 .85rem var(--f-body); letter-spacing: .03em; padding: .45rem .8rem .45rem .55rem; cursor: pointer; display: flex; align-items: center; gap: .4rem; }
 .vh-open i { width: .9rem; height: .9rem; background: linear-gradient(90deg, #fbb900 50%, #6b6c70 50%); clip-path: polygon(0 0, 34% 0, 50% 70%, 66% 0, 100% 0, 58% 100%, 42% 100%); }
