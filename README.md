@@ -19,7 +19,8 @@ Een eigen domein (bijv. `motion.vanerum.nl`) koppel je in het Pages-project onde
 - `lab.html`: Motion Cube Lab (bekijken, quiz, snelheid, nabouwen, vrij bouwen, missie)
 - `missies.html`: 100 Motion Missions-opdrachtkaarten, lesgenerator, houdingen met Vimo, digibord en PDF (2× A5 per A4)
 - `vimo.html`: Vimo in 3D naast de Motion Cube, met bewegingen en een opdrachtveld (in Claude met AI, op de website met woordherkenning)
-- `vimo2d.js`: Vimo in 2D, gedeeld door de startpagina, de houdingen en het beursscherm
+- `vimo3d.js`: Vimo in 3D, gedeeld door de startpagina, het beursscherm en het hulpje in Lab en Missions (tik op Vimo en hij zegt iets)
+- `vimo2d.js`: Vimo in 2D, voor de plaatjes bij de houdingen in Motion Missions
 
 ## Beursscherm
 

@@ -94,7 +94,7 @@ footer img{height:.9rem;width:auto}
       <div class="bubble" id="bubble" hidden></div>
     </div>
     <div class="tools">
-      <span class="hint">Sleep om rond te kijken</span>
+      <span class="hint">Tik op Vimo · sleep om rond te kijken</span>
       <button type="button" id="front">Vooraanzicht</button>
       <button type="button" id="side">Zijaanzicht</button>
       <button type="button" id="orbit" aria-pressed="false">Laat draaien</button>
@@ -121,13 +121,6 @@ footer img{height:.9rem;width:auto}
         <div class="moves" id="moves"></div>
       </div>
       <button class="demo" id="demo" type="button" aria-pressed="false">Beursmodus: alles om de beurt</button>
-      <ul class="facts">
-        <li><b>Lijf</b>: de V uit het logo als dikke 3D-letter, geel en antraciet</li>
-        <li><b>Gezicht</b>: een oog in elke balk, de mond waar de balken samenkomen</li>
-        <li><b>Armen en benen</b>: witte slierten met handschoenen en schoenen, net als in 2D</li>
-        <li><b>Opdrachten</b>: Claude vertaalt je zin naar bewegingen; zonder AI herkent Vimo eenvoudige woorden</li>
-        <li><b>Kubus</b>: het echte Motion Cube-model uit de Motion Studio, met zes gekleurde vlakken en handvat</li>
-      </ul>
     </aside>
   </div>
 </main>
@@ -466,6 +459,22 @@ cmd.addEventListener("input",updClr);
 clr.addEventListener("click",()=>{cmd.value="";updClr();cmd.focus();});
 document.getElementById("ask").addEventListener("submit",e=>{e.preventDefault();statusEl.textContent="";run(cmd.value);});
 window.__vm={play,cur:()=>cur};
+
+/* Tik op Vimo: hij zegt iets */
+{
+  const LINES = ["Hoi! Ik ben Vimo!", "Bewegen maakt je hoofd fris!", "Kom je mee springen?", "Geef me maar een opdracht!", "Ik ben de V van Vanerum!", "Wie kan het hoogst springen?", "Tik nog eens op mij!"];
+  const TM = ["hoi", "springen", "draaien", "wijzen", "balans"];
+  let li = 0, mi = 0, dn = null; const rc = new THREE.Raycaster(), nd = new THREE.Vector2();
+  renderer.domElement.addEventListener("pointerdown", e => { dn = { x: e.clientX, y: e.clientY, t: performance.now() }; });
+  renderer.domElement.addEventListener("pointerup", e => {
+    if (!dn) return; const d = dn; dn = null;
+    if (Math.hypot(e.clientX - d.x, e.clientY - d.y) > 8 || performance.now() - d.t > 600) return;
+    const r = renderer.domElement.getBoundingClientRect();
+    nd.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1); rc.setFromCamera(nd, camera);
+    if (!rc.intersectObject(char, true).length || busy === 1) return;
+    setDemo(false); queue = []; if (busy) setBusy(0); sayOverride = LINES[li++ % LINES.length]; play(TM[mi++ % TM.length]);
+  });
+}
 </script>
 <script>
 setTimeout(()=>{if(!document.querySelector("#stage canvas")){const d=document.createElement("div");d.className="err";d.textContent="De 3D-weergave kon niet laden. Probeer de pagina opnieuw of gebruik een recente versie van Chrome, Edge of Safari.";document.getElementById("stage").appendChild(d);}},6000);
