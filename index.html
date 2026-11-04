@@ -299,7 +299,7 @@ const bump = () => { last = Date.now(); };
 const EVS = ['pointerdown', 'keydown', 'wheel', 'touchstart', 'pointermove'];
 EVS.forEach(e => addEventListener(e, bump, { passive: true }));
 document.querySelectorAll('.view iframe').forEach(f => f.addEventListener('load', () => { try { EVS.forEach(e => f.contentWindow.addEventListener(e, bump, { passive: true })); } catch (e) {} }));
-const STEPS = [{ move: 'hoi', text: 'Hoi! Ik ben Vimo!' }, { move: 'kubus', text: 'Ik sta op de Motion Cube!' }, { move: 'springen', text: 'Spring je mee?' }, { move: 'wijzen', text: 'Kom bewegen!' }, { move: 'knieen' }, { move: 'balans', text: 'Kun jij dit ook?' }, { move: 'draaien', text: 'Draaien maar!' }];
+const STEPS = [{ move: 'hoi', text: 'Hoi! Ik ben Vimo!' }, { move: 'gooien' }, { move: 'pose:staan-op', text: 'Ik sta op de Motion Cube!' }, { move: 'springen', text: 'Spring je mee?' }, { move: 'pose:boven-hoofd', text: 'Kijk eens hoe sterk!' }, { move: 'gooien' }, { move: 'pose:zitten-op', text: 'Even uitrusten…' }, { move: 'knieen' }, { move: 'pose:erachter-staan', text: 'Kom je bewegen?' }, { move: 'balans', text: 'Kun jij dit ook?' }, { move: 'draaien', text: 'Draaien maar!' }];
 function loop() { if (showing) av.sequence(STEPS, () => setTimeout(loop, 900)); }
 function showAtt() {
   showing = true; att.hidden = false;
