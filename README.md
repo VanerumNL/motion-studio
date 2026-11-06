@@ -22,6 +22,12 @@ Een eigen domein (bijv. `motion.vanerum.nl`) koppel je in het Pages-project onde
 - `vimo3d.js`: Vimo in 3D, gedeeld door de startpagina, het beursscherm en het hulpje in Lab en Missions (tik op Vimo en hij zegt iets)
 - `vimo2d.js`: Vimo in 2D, voor de plaatjes bij de houdingen in Motion Missions
 
+## Welkomstscherm (AbleSign)
+
+`welkom.html` is een lichte, zelfstandige pagina (alles ingebouwd, geen 3D) voor een tv in de showroom: Vimo heet bezoekers welkom en doet tussendoor bewegingen, links staan wisselende weetjes. Vast 16:9, schaalt naar elk scherm. Teksten staan bovenin het bestand onder *Teksten*.
+
+In AbleSign: **Websites → Add website**, plak `https://<jouw-domein>/welkom.html`, sleep hem in de playlist van het scherm en zet de duur zo lang mogelijk.
+
 ## Beursscherm
 
 Zet op de startpagina onderaan **Beursscherm** aan (of open de site met `#beurs`). Raakt een minuut lang niemand het scherm aan, dan komt Vimo groot in beeld en nodigt hij bezoekers uit. Eén tik brengt je terug naar de startpagina.
